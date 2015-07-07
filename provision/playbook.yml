@@ -1,0 +1,20 @@
+---
+
+# - hosts: jenkins
+#   vars:
+#     jenkins_hostname: jenkins.internal.com
+#     jenkins_plugins:
+#       - git
+#       - sonar
+#       - ssh
+#       - swarm
+#   roles:
+#     - { role: geerlingguy.jenkins }
+
+  - hosts: jenkinsSlave
+    sudo: yes
+    vars:
+      jenkins_master_url: http://192.168.6.25:8080
+    roles:
+      - { role: geerlingguy.java }
+      - { role: jenkins_slave_setup }

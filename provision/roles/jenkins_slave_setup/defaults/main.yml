@@ -1,0 +1,5 @@
+---
+
+jenkins_directory: /home/vagrant/jenkins
+slave_executors: 1
+swarm_client_url: http://maven.jenkins-ci.org/content/repositories/releases/org/jenkins-ci/plugins/swarm-client/1.24/swarm-client-1.24-jar-with-dependencies.jar

@@ -1,0 +1,12 @@
+---
+
+- name: create jenkins directory
+  file: path={{ jenkins_directory }} state=directory mode=0755
+
+- name: download the swarm client
+  get_url: url={{ swarm_client_url }} dest={{ jenkins_directory }}/swarm_client.jar mode=0664
+
+- name: run the slave as a background process
+  shell: nohup java -jar swarm_client.jar -master {{ jenkins_master_url }} -name {{ inventory_hostname }} -fsroot {{ jenkins_directory }} > swarm_client.log 2> swarm_client.err < /dev/null &
+  args:
+    chdir: "{{ jenkins_directory }}/"
